@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./Statistics.css";
+import { StatisticsWrap, Title, StatList } from "./Statistics.styled";
 import { getRandomHexColor } from './RandomColor';
 
 // [
@@ -10,21 +10,20 @@ import { getRandomHexColor } from './RandomColor';
 //   { "id": "id-5", "label": ".pdf", "percentage": 10 }
 // ]
 
-
-export function Statistics({title, stats}) {
+export function Statistics({ title, stats }) {
   const statMarkup = stats.map(a => {
-    return (<li key={a.id} className="item" style={{ backgroundColor: getRandomHexColor() }}>
+    return (<li key={a.id} style={{ backgroundColor: getRandomHexColor()}}>
       <span className="label">{a.label}</span>
       <span className="percentage">{a.percentage + "%"}</span>
     </li>)
   })
   return (
-    <section className="statistics">
-      {title && <h2 className="title">{title}</h2>}
-      <ul className="stat-list">
+    <StatisticsWrap>
+      {title && <Title>{title}</Title>}
+      <StatList>
         {statMarkup}
-      </ul>
-    </section>
+      </StatList>
+    </StatisticsWrap>
   )
 }
 
